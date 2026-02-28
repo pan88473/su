@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para Ti 💗</title>
+
+<style>
+body{
+    margin:0;
+    height:100vh;
+    overflow:hidden;
+    font-family:'Segoe UI', sans-serif;
+    background:#918b8e;
+}
+
+/* Escenas */
+.escena{
+    position:absolute;
+    width:100%;
+    height:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    transition:opacity 1s ease;
+}
+
+/* ESCENA 1 */
+.cargando{
+    font-size:60px;
+}
+
+/* ESCENA 2 */
+#escena2{
+    background:url("img/imagen.jpg") no-repeat center center/cover;
+    flex-direction:column;
+    text-align:center;
+    color:white;
+}
+
+#escena2::before{
+    content:"";
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.35);
+}
+
+.contenido{
+    position:relative;
+    padding:20px;
+}
+
+.texto{
+    font-size:24px;
+    margin-bottom:20px;
+    opacity:0;
+    transform:translateY(20px);
+    transition:all 1s ease;
+}
+
+.mostrar{
+    opacity:1;
+    transform:translateY(0);
+}
+
+button{
+    padding:10px 25px;
+    border:none;
+    border-radius:20px;
+    background:#5d5859;
+    color:rgb(187, 178, 178);
+    font-size:16px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#a9a0a3;
+}
+
+.oculto{
+    opacity:0;
+    pointer-events:none;
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🎵 Música -->
+<audio id="musica" src="musica/musica.mp3" loop></audio>
+
+<!-- ESCENA 1 -->
+<div class="escena" id="escena1" onclick="iniciar()">
+    <div class="cargando">💌</div>
+</div>
+
+<!-- ESCENA 2 -->
+<div class="escena oculto" id="escena2">
+    <div class="contenido">
+        <div class="texto mostrar" id="texto1">Ya sé que dijiste que lo nuestro es irracional, que tenemos un marcado tema de edad, y que temes que la relación se vea afectada por tus padres, que quieres una relación más física y cercana. Aunque tus palabras contienen una verdad, y una verdad dolorosa, no dejaré de decirte cosas bonitas y expresarte que te quiero. Eres la chica que me hizo creer que alguien como yo puede amar tanto y estar dispuesto a hacer locuras. Contigo pude sentir algo especial; no miento si te confieso que muy pocas veces he sentido algo así.</div>
+        <div class="texto" id="texto2">Sí, tu edad puede ser una diferencia algo notable y tus padres pueden no aprobar esta relación, pero no me rendiré ni dejaré ir algo que quiero así de fácil. No lo hice hace medio año y no lo haré ahora. En tres años me titularé como programador y entonces podré hacer y salir a donde me haga feliz a tu lado; entonces la distancia no será un problema, esa es mi meta. Lo digo aquí porque yo no me rindo, así que nada cambiará. Seguiré a tu lado, recordándote lo bonita que eres y diciéndote cosas lindas.</div>
+        <div class="texto" id="texto3">Te quiero Su, y no importa lo que pase, te querré como el primer día </div>
+        
+        <button onclick="siguienteTexto()">Siguiente</button>
+    </div>
+</div>
+
+<script>
+
+let paso = 1;
+
+function iniciar(){
+    document.getElementById("musica").play();
+    document.getElementById("escena1").style.opacity="0";
+    document.getElementById("escena2").classList.remove("oculto");
+}
+
+function siguienteTexto(){
+
+    if(paso === 1){
+        document.getElementById("texto1").classList.remove("mostrar");
+        document.getElementById("texto2").classList.add("mostrar");
+        paso++;
+    }
+    else if(paso === 2){
+        document.getElementById("texto2").classList.remove("mostrar");
+        document.getElementById("texto3").classList.add("mostrar");
+        paso++;
+    }
+}
+
+</script>
+
+</body>
+</html>
